@@ -109,6 +109,8 @@ class UserData:
                             "Database.csv", index=False)
                         print(
                             f"{bcolors.OKBLUE}{self.app} Removed from database{bcolors.ENDC}")
+                        en.encrypt(self.key, file_name)
+                        sys.exit()
                     else:
                         print(f"{bcolors.FAIL}Cancelling!!")
                         en.encrypt(self.key, file_name)

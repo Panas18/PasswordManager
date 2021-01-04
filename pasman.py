@@ -66,8 +66,8 @@ try:
     U = User()
     U.data.user_data_base = pd.read_csv(file_name)
 except FileNotFoundError:
-    print(f"""{bcolors.OKBLUE}Database not created!!!
-          Enter a MasterPassword to create database{bcolors.ENDC}""")
+    print(f"{bcolors.OKBLUE}Database not created!!!{bcolors.ENDC}")
+    print(f"{bcolors.OKBLUE}Enter a MasterPassword to create database{bcolors.ENDC}")
     password = sc.Get_Master_Password()
     U.data.Create_User_Database()
     key = En.Generate_Key(password)
@@ -158,5 +158,3 @@ except KeyboardInterrupt:
     print(f"{bcolors.FAIL}User Interrupt")
     En.encrypt(key, file_name)
     sys.exit()
-
-
