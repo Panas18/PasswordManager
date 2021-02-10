@@ -38,11 +38,11 @@ class User:
                 self.data.user_data_base = pd.read_csv(file_name)
                 return True
             except Exception as err:
-                print(f"{bcolors.FAIL}Incorrect Password")
+                print(f"{bcolors.FAIL}Incorrect Password{bcolors.ENDC}")
                 return False
                 sys.exit()
         except KeyboardInterrupt:
-            print(f"{bcolors.FAIL}User Interrupt!")
+            print(f"{bcolors.FAIL}User Interrupt!{bcolors.ENDC}")
             sys.exit()
 try:
     U = User()
@@ -64,11 +64,11 @@ parser.add_argument("-a", "--add_password", action='store_true',
 parser.add_argument("-v", "--view_password", action='store_true',
                     help="View saved password and login id")
 parser.add_argument("-l", "--list_passwords", action='store_true',
-                    help="List all the app/website stored ")
-parser.add_argument("-r", "--remove_pass", action='store_true',
                     help="Remove a stored password ")
 parser.add_argument("-R", "--remove_all", action='store_true',
                     help="Remove all data stored in the system")
+parser.add_argument("-r", "--remove_pass", action='store_true',
+			help="Remove a stored password")
 
 args = parser.parse_args()
 
@@ -99,7 +99,7 @@ if len(sys.argv) > 1:
                                     len=pass_length)
                             except Exception as err:
                                 print(
-                                    f"{bcolors.WARNING}password Length is 8 when defult")
+                                    f"{bcolors.WARNING}password Length is 8 when defult{bcolors.ENDC}")
                                 U.data.password = sc.Generate_Password()
                         else:
                             U.data.password = input(
@@ -110,7 +110,7 @@ if len(sys.argv) > 1:
                         En.encrypt(key, file_name)
                         sys.exit()
             except Exception as err:
-                print(f"{bcolors.FAIL}{err}")
+                print(f"{bcolors.FAIL}{err}{bcolors.ENDC}")
                 # print(err)
 
                 sys.exit()
@@ -122,18 +122,18 @@ if len(sys.argv) > 1:
                 U.data.app = str(
                     input(f"{bcolors.OKGREEN}App:{bcolors.ENDC} ")).lower().split(".")[0]
                 login_id, password = U.data.Return_Password()
-                print(f"Login Id:{bcolors.WARNING} {login_id}")
+                print(f"Login Id:{bcolors.WARNING} {login_id}{bcolors.ENDC}")
                 try:
                     pyperclip.copy(password)
-                    print(f"{bcolors.OKBLUE}Password is copied to your clipboard")
+                    print(f"{bcolors.OKBLUE}Password is copied to your clipboard{bcolors.ENDC}")
                     check = str(
                         input((f"{bcolors.OKGREEN}View Password? [Yes/No]:{bcolors.ENDC} "))).lower()
                     if check[0] == "y":
-                        print(f"Password:{bcolors.WARNING} {password}")
+                        print(f"Password:{bcolors.WARNING} {password}{bcolors.ENDC}")
                     else:
                         sys.exit()
                 except Exception as err:
-                    print(f"{bcolors.WARNING}No when default")
+                    print(f"{bcolors.WARNING}No when default{bcolors.ENDC}")
                     sys.exit()
 
         if args.list_passwords:
@@ -155,7 +155,7 @@ if len(sys.argv) > 1:
                 U.data.Remove_User()
 
     except KeyboardInterrupt:
-        print(f"{bcolors.FAIL}User Interrupt")
+        print(f"{bcolors.FAIL}User Interrupt{bcolors.ENDC}")
         En.encrypt(key, file_name)
         sys.exit()
 else:

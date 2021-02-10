@@ -112,7 +112,7 @@ class UserData:
                         en.encrypt(self.key, file_name)
                         sys.exit()
                     else:
-                        print(f"{bcolors.FAIL}Cancelling!!")
+                        print(f"{bcolors.FAIL}Cancelling!!{bcolors.ENDC}")
                         en.encrypt(self.key, file_name)
                         sys.exit()
                 except Exception as err:
@@ -152,11 +152,11 @@ class UserData:
                         sys.exit()
                 except Exception as err:
                     print(err)
-                    print(f"{bcolors.WARNING} No when default")
+                    print(f"{bcolors.WARNING} No when default{bcolors.ENDC}")
                     en.encrypt(self.key, file_name)
                     sys.exit()
         except Exception as err:
-            print(f"{bcolors.FAIL}Data not found")
+            print(f"{bcolors.FAIL}Data not found{bcolors.ENDC}")
             en.encrypt(self.key, file_name)
             sys.exit()
 
@@ -170,13 +170,13 @@ class UserData:
             if check[0] == "y":
                 os.remove("Database.csv")
                 print(
-                    f"{bcolors.OKBLUE}All data  is removed from the system")
+                    f"{bcolors.OKBLUE}All data  is removed from the system{bcolors.ENDC}")
                 sys.exit()
             else:
-                print(f"{bcolors.FAIL}Cancelling!!")
+                print(f"{bcolors.FAIL}Cancelling!!{bcolors.ENDC}")
                 sys.exit()
         except Exception as err:
-            print(f"{bcolors.WARNING}No when default")
+            print(f"{bcolors.WARNING}No when default{bcolors.ENDC}")
             sys.exit()
 
     def List_Passwords(self):

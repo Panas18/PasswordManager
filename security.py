@@ -26,10 +26,10 @@ def Get_Master_Password(count= 0):
             else:
                 return password1
         else:
-            print(f"{bcolors.FAIL}3 unsuccessful attempt")
+            print(f"{bcolors.FAIL}3 unsuccessful attempt{bcolors.ENDC}")
             sys.exit()
     except KeyboardInterrupt:
-        print(f"{bcolors.FAIL}User Interrupt")
+        print(f"{bcolors.FAIL}User Interrupt{bcolors.ENDC}")
         sys.exit()
 
 def Ask_Password(userpassword, user_name ,count = 0):
