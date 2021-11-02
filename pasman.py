@@ -44,6 +44,8 @@ class User:
         except KeyboardInterrupt:
             print(f"{bcolors.FAIL}User Interrupt!{bcolors.ENDC}")
             sys.exit()
+
+
 try:
     U = User()
     U.data.user_data_base = pd.read_csv(file_name)
@@ -64,22 +66,20 @@ parser.add_argument("-a", "--add_password", action='store_true',
 parser.add_argument("-v", "--view_password", action='store_true',
                     help="View saved password and login id")
 parser.add_argument("-l", "--list_passwords", action='store_true',
-                    help="Remove a stored password ")
+                    help="List all stored password ")
 parser.add_argument("-R", "--remove_all", action='store_true',
                     help="Remove all data stored in the system")
 parser.add_argument("-r", "--remove_pass", action='store_true',
-			help="Remove a stored password")
+                    help="Remove a stored password")
 
 args = parser.parse_args()
 
-
+U = User()
 if len(sys.argv) > 1:
     try:
         if args.add_password:
             try:
-                U = User()
-                pass_value = U.Identify_User()
-                if pass_value:
+                if U.Identify_User():
                     U.data.app = input(
                         f"{bcolors.OKGREEN}App:{bcolors.ENDC} ")
                     U.data.login_id = input(
@@ -116,20 +116,20 @@ if len(sys.argv) > 1:
                 sys.exit()
 
         if args.view_password:
-            U = User()
-            pass_value = U.Identify_User()
-            if pass_value:
+            if U.Identify_User():
                 U.data.app = str(
                     input(f"{bcolors.OKGREEN}App:{bcolors.ENDC} ")).lower().split(".")[0]
                 login_id, password = U.data.Return_Password()
                 print(f"Login Id:{bcolors.WARNING} {login_id}{bcolors.ENDC}")
                 try:
                     pyperclip.copy(password)
-                    print(f"{bcolors.OKBLUE}Password is copied to your clipboard{bcolors.ENDC}")
+                    print(
+                        f"{bcolors.OKBLUE}Password is copied to your clipboard{bcolors.ENDC}")
                     check = str(
                         input((f"{bcolors.OKGREEN}View Password? [Yes/No]:{bcolors.ENDC} "))).lower()
                     if check[0] == "y":
-                        print(f"Password:{bcolors.WARNING} {password}{bcolors.ENDC}")
+                        print(
+                            f"Password:{bcolors.WARNING} {password}{bcolors.ENDC}")
                     else:
                         sys.exit()
                 except Exception as err:
@@ -137,21 +137,15 @@ if len(sys.argv) > 1:
                     sys.exit()
 
         if args.list_passwords:
-            U = User()
-            pass_value = U.Identify_User()
-            if pass_value:
+            if U.Identify_User():
                 U.data.List_Passwords()
 
         if args.remove_pass:
-            U = User()
-            pass_value = U.Identify_User()
-            if pass_value:
+            if U.Identify_User():
                 U.data.Remove_Password()
 
         if args.remove_all:
-            U = User()
-            pass_value = U.Identify_User()
-            if pass_value:
+            if U.Identify_User():
                 U.data.Remove_User()
 
     except KeyboardInterrupt:
